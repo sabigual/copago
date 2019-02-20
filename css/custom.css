@@ -1,0 +1,65 @@
+
+        .float-left { float: left; }
+        .half { width: 40%; }
+        label {
+            font-weight: bold;
+        }       
+        fieldset > div {
+            border-bottom: 1px solid #eee;
+            padding: 3px;
+        }
+        fieldset > div > input, fieldset > div > select  {
+            float: right;
+            width: 150px;
+        }
+		
+		fieldset > div > span{
+            float: right;
+            width: 500px;			
+		}
+    
+        tbody tr {  
+          background-color: #FFFFFF;  
+        }  
+        tbody tr.impar {  
+          background-color: #666666;  
+          color: white;  
+        }
+        
+        .estilotextarea1 {font-family: Garamond,verdana;font-size: 10pt;font-weight: bold;letter-spacing: 5px;}
+		
+		.table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th {
+			background-color: #CCCCCC;
+		}
+		
+		.color-rojo {
+		color:#940f04;
+		font-size:15px;
+		text-align: left;
+		text-decoration: underline;
+		font-family: Trebuchet MS, Trebuchet, Helvetica, Arial;
+		}
+		.color-negro {
+		color:#000;
+		font-size:15px;
+		text-align: left;
+		text-decoration: underline;
+		font-family: Trebuchet MS, Trebuchet, Helvetica, Arial;
+		}		
+
+		.color-azul {
+		color:#00F;
+		font-size:15px;
+		text-align: left;
+		text-decoration: none;
+		font-family: Trebuchet MS, Trebuchet, Helvetica, Arial;
+		}		
+
+		.color-naranja {
+		color:orangered;
+		font-size:15px;
+		text-align: left;
+		text-decoration: none;
+		font-family: Trebuchet MS, Trebuchet, Helvetica, Arial;
+		}		
+

@@ -1,0 +1,543 @@
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+	<title>Funcion de copago</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="css/plugins/timeline.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="css/plugins/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<div id="wrapper">
+
+<div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="index.html"></a>
+</div>
+<!-- /.navbar-header -->
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Calculo de copago</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+    <!-- Constantes y Variables -->
+<fieldset style="background-color:#CCC">
+<table class="table">
+  <caption>
+    <strong>Constantes y Variables</strong>
+  </caption>
+  <tr class="active">
+    <td width="207">(Tope) Alto Costo:</td>
+    <td width="306"><select  id="LstTopeAltoCosto" size="1" tabindex="1">
+      <option value="450000.00">450,000.00</option>
+      <option value="0.00">0.00</option>    
+      <option value="150000.00">150,000.00</option>
+      <option value="200000.00">200,000.00</option>
+      <option value="250000.00">250,000.00</option>
+      <option value="300000.00">300,000.00</option>
+      <option value="350000.00">350,000.00</option>
+      <option value="400000.00">400,000.00</option>
+      <option value="500000.00">500,000.00</option>
+      <option value="550000.00">550,000.00</option>
+      <option value="600000.00">600,000.00</option>
+      <option value="650000.00">650,000.00</option>
+      <option value="700000.00">700,000.00</option>
+      <option value="750000.00">750,000.00</option>
+      <option value="800000.00">800,000.00</option>
+      <option value="850000.00">850,000.00</option>
+      <option value="900000.00">900,000.00</option>
+      <option value="950000.00">950,000.00</option>
+      <option value="1000000.00">1,000,000.00</option>                
+    </select>
+      (Segun Gradualidad)</td>
+    <td width="268">Consum Alto Costo:</td>
+    <td width="48">
+    <div class="col-xs-14">
+    <input class="form-control" type="text" id="TextConsumidoAltoCosto" style="text-align:right" tabindex="2" value="449000.00" size="10" maxlength="12">
+    </div>
+    </td>
+    <td width="132" rowspan="1">Tipo Autorizacion:</td>
+    <td width="159"><select name="LstTipoHosp" id="LstTipoHosp" size="1" tabindex="3">
+				      <option value="5">Hospitalizacion</option>
+				      <option value="6">Parto</option>
+				      <option value="7">Cirujia</option>
+				      <option value="9">Alto Costo</option>
+				      <option value="10">Rehabilitacion</option>
+				      <option value="3">Odontologia</option>
+				    </select>
+	</td>
+    </tr>
+  <tr class="success">
+    <td>Tope Copago (2 Sal Min): </td>
+    <td>
+    <div class="row">
+    <div class="col-xs-6">
+    <input class="form-control" type="text" disabled="disabled" id="TxtTopeSalarioMin" style="text-align:right" value="17290.00" size="10" maxlength="12">
+    </div>
+    </div>
+    </td>
+    <td>Copago Consumido (<strong>Evento Pre</strong>):</td>
+    <td>
+    <div class="col-xs-14">
+    <input class="form-control" type="text" id="TxtCopagoConsumido" style="text-align:right" tabindex="4" value="10300.00" size="10" maxlength="12">
+    </div>
+    </td>
+    <td>&nbsp;</td>
+    </tr>
+  <tr class="warning">
+    <td>Alt. Costo Plan:</td>
+    <td><select id="LstTopeAltoCostoPlan" size="1" tabindex="5">
+      <option value="150000.00">150,000.00</option>    
+      <option value="0.00">0.00</option>    
+      <option value="200000.00">200,000.00</option>
+      <option value="250000.00">250,000.00</option>
+      <option value="300000.00">300,000.00</option>
+      <option value="350000.00">350,000.00</option>
+      <option value="400000.00">400,000.00</option>
+      <option value="450000.00">450,000.00</option>
+      <option value="500000.00">500,000.00</option>
+      <option value="550000.00">550,000.00</option>
+      <option value="600000.00">600,000.00</option>
+      <option value="650000.00">650,000.00</option>
+      <option value="700000.00">700,000.00</option>
+      <option value="750000.00">750,000.00</option>
+      <option value="800000.00">800,000.00</option>
+      <option value="850000.00">850,000.00</option>
+      <option value="900000.00">900,000.00</option>
+      <option value="950000.00">950,000.00</option>
+      <option value="1000000.00">1,000,000.00</option>          
+    </select> 
+      (Segun Carencia)</td>
+    <td>Consumo Alto Costo Plan:</td>
+    <td>
+    <div class="col-xs-14">
+    <input class="form-control" type="text" id="TextConsumidoAltoCostoPlan" style="text-align:right"  value="149700.00" size="10" maxlength="12" tabindex="6">
+    </div>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</fieldset>    
+
+	<!-- Inicio de campos para valores de funciones -->
+	<fieldset class="half float-left">
+		<legend>Listado de variables</legend>
+
+		<div>
+			<label>Procedimiento (Simon):</label>
+			<input type="text" id="proc" value="2479" class="docal" tabindex="7" />
+		</div>
+
+		<div>
+			<label>Costo de procedimiento (RD$):</label>
+			<input type="text" id="costo" value="1800" class="docal" tabindex="8" />
+		</div>
+
+		<div>
+			<label>Cantidad:</label>
+			<input type="text" id="cantidad" value="1" class="docal" tabindex="9" />
+		</div>
+
+		<div>
+			<label>Cuota Moderadora Fija (RD$):</label>
+		  <input type="text" id="cmf" value="" class="docal" placeholder="CMF" tabindex="10" />            
+		</div>
+	  <div>
+			<label>Cuota Moderadora Variable:</label>
+			<input type="text" id="cmv" value="20" class="docal" tabindex="11" />
+		[%]</div>
+		
+		<div>
+			<label>Tope PDSS (RD$):</label>
+			<input type="text" id="topePDSS" value="1800" class="docal" tabindex="12" />
+		</div>
+		
+		<div>
+			<label>Tipo cobertura complementaria (RD$ / %):</label>
+			<select name="pcTipoCobertura" id="pcTipoCobertura" tabindex="13">
+			  <option value="0" selected="selected">-- SIN PLAN--</option>
+				<option value="1">1 - Fija</option>
+				<option value="2">2 - Porcentual</option>
+			</select>
+		</div>
+		
+		<div>
+			<label>Cobertura complementaria (RD$ / %):</label>
+			<input type="text" id="pcCobertura" value="50" tabindex="14" />
+		</div>
+		
+		<div>
+			<label>Tope complementario (RD$):</label>
+			<input type="text" id="pcTopeCobertura" value="500" tabindex="15" />
+		</div>
+        
+		<div>
+			<label>Grupo:</label>
+		  <input type="text" id="pcGrupo" value="5" tabindex="16" />
+		</div>
+        
+		
+	  <div>
+			<button id="cmdProcesar" class="btn btn-primary" tabindex="17">Agregar y Calcular</button>
+		</div>
+	</fieldset>	
+	<!-- Fin de div para Variables y Procesar -->
+	
+	<!-- Inicio de div de resultados -->
+	<fieldset>
+		<legend>Resultados de calculos</legend>
+
+		<div>
+			<label>Tipo procedimiento: </label>
+			<span id="tipoProc"></span>
+		</div>
+
+		<div>
+			<label>Total (RD$): </label>
+			<span id="total" class="color-negro"></span>
+		</div>
+
+		<div>
+			<label>Co-pago (RD$): </label>
+			<span id="copago"></span>
+		</div>
+
+		<div>
+			<label>Centro (RD$): </label>
+			<span id="centro" class="color-rojo"></span>
+		</div>
+
+		<div>
+			<label>Planes (RD$): </label>
+			<span id="planes" class="color-naranja"></span>
+		</div>
+		<div>
+			<label>PDSS (RD$): </label>
+			<span id="pdss" class="color-azul"></span>
+		</div>
+        
+		<hr />
+	  <hr />
+		<div>
+			<label>C&oacute;digo Notificaci&oacute;n: </label>
+			<span id="errorCod"></span>
+		</div>
+		
+		<div>
+			<label>Mensaje de Notificaci&oacute;n: </label>
+			<span id="errorMsg"></span>
+		</div>
+		
+	</fieldset>
+<!-- Fin de div de resultados -->
+<hr>
+<div align="left"><h3>Autorizacion Actual </h3></div>
+ <div class="table-responsive">
+ <table id="tablaProcedimientos" class="table table-bordered table-striped table-hover" >
+        <thead>
+            <tr>
+                <th width="8%" bgcolor="#CCCC99" >Simon</th>
+                <th width="33%" bgcolor="#CCCC99"> Procedimiento - Grupo</th>
+                <th width="8%" bgcolor="#CCCC99">Cantidad</th>
+                <th width="8%" bgcolor="#CCCC99">Total</th>
+                <th width="9%" bgcolor="#CCCC99">Co-pago</th>
+                <th width="7%" bgcolor="#CCCC99">Centro</th>
+                <th width="8%" bgcolor="#CCCC99">Planes</th>
+                <th width="6%" bgcolor="#CCCC99">PDSS</th>                                                                                
+                <th width="13%" bgcolor="#CCCC99">Comando</th>                                                                                                
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="2"><div align="right">Totales:</div></th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+                <th>
+                <input type="text"   id="TCopago" style="text-align:right" tabindex="4" value="0.00" size="10" maxlength="12" disabled="disabled">
+                <input type="hidden"  id="HTCopago" value="0"></th>
+                <th>
+                <input type="text" id="TCentro" style="text-align:right" tabindex="4" value="0.00" size="10" maxlength="12" disabled="disabled">
+                <input type="hidden"  id="HTCentro" value="0"></th>
+                <th>
+                <input  type="text" id="TPlanes" style="text-align:right" tabindex="4" value="0.00" size="10" maxlength="12" disabled="disabled">
+                <input type="hidden"  id="HTPlanes" value="0"></th>
+                <th>
+                <input  type="text" id="TPdss" style="text-align:right" tabindex="4" value="0.00" size="10" maxlength="12" disabled="disabled">
+                <input type="hidden"  id="HTPdss" value="0"></th>                                                                                
+                <th></th>                                                                                                
+            </tr>
+        
+    </tfoot>
+    </table>
+	</div>
+</div>
+    <!-- /#wrapper -->
+
+</div>
+<!-- /.row -->
+</div>
+<!-- /#page-wrapper -->
+
+<!-- Espacio para codigo de javascript -->
+	<script src="js/jquery-1.11.1.js"></script>
+	<script src="js/md-procedimientos.calc.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#cmdProcesar").click(function(){
+				calcularMontos();
+			});
+
+		//*******************************************					
+		// Setear foco en primer elemento
+		$( "#LstTopeAltoCosto" ).focus(function() {
+					$(this).css({'background-color' : '#CC9'});			
+		});
+		
+		// Setear color al tener el focus en elemento texto  o select
+		  $('input:text, select').focus(
+			function(){
+				$(this).css({'background-color' : '#CC9'});
+			});
+		
+			$('input:text, select').blur(
+			function(){
+				$(this).css({'background-color' : '#FFF'});
+			});
+		//*******************************************	
+					
+					
+		function calcularMontos(){
+			var proc = $("#proc").val();
+			var costo = $("#costo").val();
+			var cant = $("#cantidad").val();
+			var cmf = $("#cmf").val();
+			var cmv = $("#cmv").val();
+			var topePDSS = $("#topePDSS").val();
+			var pcTipo = $("#pcTipoCobertura").val();
+			var pcCobertura = $("#pcCobertura").val();
+			var pcTope = $("#pcTopeCobertura").val();
+			// ********  nuevas caracteristicas agregadas **********************
+			var topeAltCostGradual = $("#LstTopeAltoCosto").val();
+			var consumidoAltCost = $("#TextConsumidoAltoCosto").val();			
+			var topeAltCostGradualPlan = $("#LstTopeAltoCostoPlan").val();
+			var consumidoAltCostPlan = $("#TextConsumidoAltoCostoPlan").val();				
+			var topeSalariosMin = $("#TxtTopeSalarioMin").val();
+			var copagoConsumidoEventoPre = $("#TxtCopagoConsumido").val(); 
+			var tipoAutorizacion = $("#LstTipoHosp").val(); 
+			var grupo = $("#pcGrupo").val();
+			// totales de la autorizacion actual, lo que se le paga al centro  y copago (Campos ocultos en tabla dinamica de Procedimientos)
+			var HTCopago = parseFloat($("#HTCopago").val());
+			var HTCentro = parseFloat($("#HTCentro").val());	
+			var HTPlanes = parseFloat($("#HTPlanes").val());	
+			var HTPdss = parseFloat($("#HTPdss").val());									
+			//********* 
+							
+			var result = calcularCopago(proc, costo, cant, cmv, cmf, topePDSS, pcTipo, pcCobertura, pcTope, topeAltCostGradual, consumidoAltCost, topeAltCostGradualPlan, consumidoAltCostPlan, topeSalariosMin, copagoConsumidoEventoPre, tipoAutorizacion, grupo, HTCopago, HTCentro, HTPlanes, HTPdss);
+
+			//  validar si el codigo de procedimiento ya esta agregado a la autorizacion actual para  no volver a agregarlo;
+			//  asi oblicar al usuario a eliminar para cambiar la cantidad deseada.
+			//  se puede comentar esta linea para permitir agregar el mismo procedimiento de manera libre	.		
+			 Validar(result);
+			
+			$("#total").html(result.total.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+			$("#copago").html(result.copago.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+			$("#centro").html(result.centro.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+			$("#planes").html(result.planes.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+			$("#pdss").html(result.pdss.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));				
+			$("#tipoProc").html(result.tipoProc);
+			$("#errorCod").html(result.errorCod);
+			$("#errorMsg").html(result.errorMsg);
+			
+			if (result.errorCod===0) {
+				// El Procedimiento Agregar Solo debe ser llamado cuando el codigo de error sea cero, esto indica que todo ha ido bien.													
+				Agregar (result);
+			}						
+		}
+		
+	});
+
+	//Inicializo mi arreglo datos para los procedimientos que se van buscando sean agregados
+	var procedimientos = [];
+	var codigo = 0;
+
+	function Agregar(result) {
+													
+					// JSON	objeto procedimiento								
+					procedimientos.push({
+						codigo: ++codigo,
+						procedimiento: result.procedimiento,
+						grupo: result.grupo,						
+						cantidad: result.cantidad,
+						total: result.total,
+						copago: result.copago,
+						centro: result.centro,
+						planes: result.planes,
+						pdss: result.pdss,
+						tipoProc: result.tipoProc.trim(),																								
+						fecha: new Date()
+					});
+					
+					Mostrar ();
+				
+	}; // function Agregar(result) 
+
+	function Mostrar () {
+		// Esta Funcion Mortrar Tambien Recalcula los totales de la Autorizacion Actual, Por lo que inicializo variables para los totales:
+		var tcopago = 0 ;
+		var tcentro = 0 ;
+		var tplanes = 0;
+		var tpdss = 0 ;
+		
+		var classDanger = 'class="text-danger"';
+		var classPrimary = 'class="text-primary"';
+		var classDecora = classPrimary;
+		var classTr = '';
+									
+		var  tablaProcedimientos = $('table#tablaProcedimientos > tbody');
+		var len = procedimientos.length;
+			// limpiar la tabla
+			tablaProcedimientos.empty();
+			
+		for (var i = 0; i < len; i++) {
+			var procedimiento = procedimientos[i];	
+			
+				// If para decorar y resaltar el texto  del procedimiento con la clase especificada mas arriba, cuando sea del grupo 9			
+				if (parseInt(procedimiento.grupo,10) === parseInt(9,10)){
+					classDecora = classDanger;	
+					classTr = 'class="warning"';				
+				}
+				else
+				{
+					classDecora = '';
+					classTr = '';
+				} // Fin if
+				
+										
+				// reescribe los tr de la tabla
+				tablaProcedimientos.append(
+								'<tr>'+
+								'<td style="text-align:left">'+procedimiento.procedimiento+'</td>'+
+								'<td style="text-align:left"><p '+classDecora+'>'+'Descripcion - G '+procedimiento.grupo+'. ('+procedimiento.tipoProc+')</p> </td>'+
+								'<td style="text-align:center">'+procedimiento.cantidad+'</td>'+
+								'<td style="text-align:right">'+procedimiento.total.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')+'</td>'+
+								'<td style="text-align:right">'+procedimiento.copago.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')+'</td>'+
+								'<td style="text-align:right">'+procedimiento.centro.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')+'</td>'+
+								'<td style="text-align:right">'+procedimiento.planes.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')+'</td>'+
+								'<td style="text-align:right">'+procedimiento.pdss.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')+'</td>'+
+								'<td style="text-align:left"><button onclick="Eliminar('+procedimiento.codigo+')" class="btn btn-info btn-sm">Eliminar ['+procedimiento.codigo+']</button></td>'+
+								'</tr>'										
+				);	 // tablaProcedimientos.append				
+
+					// Variables Totales Para el Calculo (sumar valor anterior al actual) en cada add
+				tcopago += parseFloat(procedimiento.copago);
+				tcentro += parseFloat(procedimiento.centro);
+				tplanes += parseFloat(procedimiento.planes);
+				tpdss   += parseFloat(procedimiento.pdss);
+										
+		} // for (var i = 0; i < len; i++)
+					
+					
+		// ********** VALORES DE TOTALES EN EL FOOTER DE LA TABLA PROCEDIMIENTOS *************														
+			// Asigno valor a Campos Ocultos de Totales para el calculo				
+			$("#HTCopago").val(tcopago);
+			$("#HTCentro").val(tcentro);
+			$("#HTPlanes").val(tplanes);
+			$("#HTPdss").val(tpdss);
+							
+			// Asigno valor a Campos Visibles de Totales a Mostrar				
+			$("#TCopago").val(tcopago.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+			$("#TCentro").val(tcentro.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+			$("#TPlanes").val(tplanes.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+			$("#TPdss").val(tpdss.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));			
+		// *********** FIN VALORES DE TOTALES *********			
+	} //function Mostrar ()
+
+	function Eliminar(codigo) {
+		var len = procedimientos.length;
+		for (var i =0; i < len; i++) {
+			if(procedimientos[i].codigo === codigo){
+				procedimientos.splice(i, 1);
+				break;
+			}
+		};
+		
+		Mostrar ();	
+	}
+
+
+	function Validar(result) {
+		var len = procedimientos.length;
+		for (var i =0; i < len; i++) {
+			// si el codigo de procedimiento es encontrado en el arreglo, modifico el mensaje de error del objeto result y no permito agregar el nuevo procedimiento al objeto procedimientos
+			if((procedimientos[i].procedimiento === result.procedimiento) && (procedimientos[i].grupo === result.grupo)){				
+				result.errorCod=10;
+				result.errorMsg=' Ya existe el Procedimiento['+result.procedimiento+']  del Grupo ['+result.grupo+'] en la Autorizacion Actual, Es preferible eliminarlo y volver a cargarlo con la cantidad correcta';							 								
+			}
+		};	
+	}
+
+
+	function Modificar (codigo, procedimiento) {
+		var len = Procedimientos.length;
+		for (var i =0; i < len; i++) {
+			if( procedimientos[i].codigo  === codigo){
+				procedimientos[i].simon 		= procedimiento.simon;
+				procedimientos[i].descripcion 	= procedimiento.descripcion;
+				procedimientos[i].grupo 		= procedimiento.grupo;
+				procedimientos[i].subgrupo 		= procedimiento.subgrupo;
+				procedimientos[i].precio 		= procedimiento.precio;
+				procedimientos[i].cantidad 		= procedimiento.cantidad;
+				procedimientos[i].cmv 			= procedimiento.cmv;
+				procedimientos[i].cmf 			= procedimiento.cmf;
+				procedimientos[i].topePDSS 		= procedimiento.topePDSS;
+				procedimientos[i].pccm 			= procedimiento.pccm;           
+				break;
+			}
+		};   
+	}
+</script>
+</body>
+</html>
